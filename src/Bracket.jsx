@@ -135,11 +135,34 @@ const generateBracket = ()=>{
 
   // 🔹 FIREBASE SAVE
   const saveToFirebase = async ()=>{
-    await setDoc(doc(db,"veikkaus","data"),{
-      ...allData,
-     [current]: {picks,r16,qf,sf,final,winner}
-    });
-  };
+
+  if(!current){
+    alert("Valitse pelaaja");
+    return;
+  }
+
+  try{
+    await setDoc(
+      doc(db,"veikkaus","data"),
+      {
+        [current]: {
+          picks,
+          r16,
+          qf,
+          sf,
+          final,
+          winner
+        }
+      },
+      { merge: true } // 🔥 TÄRKEIN
+    );
+
+    alert("Tallennettu!");
+  }catch(err){
+    console.error(err);
+    alert("Tallennus epäonnistui");
+  }
+};
 
   // 🔹 UI STYLE
   const box = (team,selected)=>({
