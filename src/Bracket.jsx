@@ -146,13 +146,39 @@ export default function Bracket(){
     setMatches(pairs);
   };
 
-  const saveToFirebase = async ()=>{
-    await setDoc(doc(db,"veikkaus","data"),{
-      [current]: {picks,r16,qf,sf,final,winner}
-    },{merge:true});
-    alert("Tallennettu!");
-  };
+ const saveToFirebase = async ()=>{
 
+  if(!current){
+    alert("❗ Valitse pelaaja ennen tallennusta");
+    return;
+  }
+
+  try {
+
+    console.log("Saving player:", current);
+
+    await setDoc(
+      doc(db,"veikkaus","data"),
+      {
+        [current]: {
+          picks,
+          r16,
+          qf,
+          sf,
+          final,
+          winner
+        }
+      },
+      { merge:true }
+    );
+
+    alert("✅ Tallennettu onnistuneesti!");
+
+  } catch(err){
+    console.error("SAVE ERROR:", err);
+    alert("❌ Tallennus epäonnistui");
+  }
+};
   // 🎨 UI
   const box = (team, selected)=>({
     background:selected?"#22c55e":"#1e293b",
