@@ -22,6 +22,9 @@ export default function Bracket(){
 
   const [allData,setAllData] = useState({});
 
+  const [qf,setQF] = useState(Array(8).fill(""));
+  const [sf,setSF] = useState(Array(4).fill(""));
+
   // 🔹 FIREBASE SYNC
   useEffect(()=>{
     const unsub = onSnapshot(doc(db,"veikkaus","data"),snap=>{
@@ -50,22 +53,45 @@ export default function Bracket(){
   };
 
   // 🔹 BRACKET PICK
-  const pick = (team, round, index)=>{
-    if(isLocked) return;
+ const pick = (team, round, index)=>{
+  if(isLocked) return;
 
-    if(round==="R32"){
-      setR16(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+  if(round==="R32"){
+    setR16(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
 
-    if(round==="FINAL"){
-      setWinner(team);
-    }
-  };
+  if(round==="R16"){
+    setQF(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
 
+  if(round==="QF"){
+    setSF(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
+
+  if(round==="SF"){
+    setFinal(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
+
+  if(round==="FINAL"){
+    setWinner(team);
+  }
+};
   // 🔹 GENEROI OTTELUT
 const generateBracket = ()=>{
 
@@ -111,7 +137,7 @@ const generateBracket = ()=>{
   const saveToFirebase = async ()=>{
     await setDoc(doc(db,"veikkaus","data"),{
       ...allData,
-      [current]: {picks,r16,final,winner}
+     [current]: {picks,r16,qf,sf,final,winner}
     });
   };
 
