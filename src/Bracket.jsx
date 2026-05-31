@@ -147,10 +147,10 @@ const generateBracket = ()=>{
 };
 
   // 🔹 FIREBASE SAVE
-  const saveToFirebase = async ()=>{
+const saveToFirebase = async ()=>{
 
   if(!current){
-    alert("Valitse pelaaja");
+    alert("Valitse pelaaja ensin");
     return;
   }
 
@@ -167,12 +167,13 @@ const generateBracket = ()=>{
           winner
         }
       },
-      { merge: true } // 🔥 TÄRKEIN
+      { merge: true } // 🔥 TÄMÄ PAKOLLINEN
     );
 
-    alert("Tallennettu!");
+    console.log("Tallennettu:", current);
+
   }catch(err){
-    console.error(err);
+    console.error("Firebase error:", err);
     alert("Tallennus epäonnistui");
   }
 };
