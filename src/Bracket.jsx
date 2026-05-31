@@ -149,13 +149,13 @@ export default function Bracket(){
  const saveToFirebase = async ()=>{
 
   if(!current){
-    alert("❗ Valitse pelaaja ennen tallennusta");
+    alert("Valitse pelaaja");
     return;
   }
 
   try {
 
-    console.log("Saving player:", current);
+    console.log("🔥 SAVING:", current);
 
     await setDoc(
       doc(db,"veikkaus","data"),
@@ -172,6 +172,15 @@ export default function Bracket(){
       { merge:true }
     );
 
+    console.log("✅ SUCCESS");
+
+    alert("Tallennettu!");
+
+  } catch(err){
+    console.error("❌ ERROR:", err);
+    alert("Tallennus epäonnistui");
+  }
+};
     alert("✅ Tallennettu onnistuneesti!");
 
   } catch(err){
