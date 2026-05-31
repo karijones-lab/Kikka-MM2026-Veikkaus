@@ -67,25 +67,45 @@ export default function Bracket(){
   };
 
   // 🔹 GENEROI OTTELUT
-  const generateBracket = ()=>{
-    let qualified = [];
+const generateBracket = ()=>{
 
-    Object.keys(picks).forEach(g=>{
-      if(picks[g]?.[1]) qualified.push(picks[g][1]);
-      if(picks[g]?.[2]) qualified.push(picks[g][2]);
+  let first = {};
+  let second = {};
+  let thirds = [];
+
+  Object.keys(groups).forEach(g=>{
+    const p = picks[g];
+    if(!p?.[1] || !p?.[2]) return;
+
+    first[g] = p[1];
+    second[g] = p[2];
+
+    const third = groups[g].find(
+      t => t !== p[1] && t !== p[2]
+    );
+
+    thirds.push({
+      team: third,
+      score: Math.random()
     });
+  });
 
-    while(qualified.length < 32){
-      qualified.push("⭐ Best 3rd");
-    }
+  thirds.sort((a,b)=>b.score - a.score);
+  const bestThirds = thirds.slice(0,8).map(t=>t.team);
 
-    const pairs = [];
-    for(let i=0;i<32;i+=2){
-      pairs.push([qualified[i],qualified[i+1]]);
-    }
+  const qualified = [
+    ...Object.values(first),
+    ...Object.values(second),
+    ...bestThirds
+  ];
 
-    setMatches(pairs);
-  };
+  const pairs = [];
+  for(let i=0;i<32;i+=2){
+    pairs.push([qualified[i],qualified[i+1]]);
+  }
+
+  setMatches(pairs);
+};
 
   // 🔹 FIREBASE SAVE
   const saveToFirebase = async ()=>{
