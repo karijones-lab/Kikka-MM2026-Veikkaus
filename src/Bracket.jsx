@@ -66,46 +66,63 @@ export default function Bracket(){
   };
 
   // 🔹 KNOCKOUT PICK
-  const pick = (team, round, index)=>{
-    if(isLocked) return;
+ const pick = (team, round, index)=>{
+  if(isLocked) return;
 
-    if(round==="R32"){
-      setR16(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+  if(round==="R32"){
+    setR16(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
 
-    if(round==="R16"){
-      setQF(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+    setQF(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;
+      return c;
+    });
+  }
 
-    if(round==="QF"){
-      setSF(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+  if(round==="R16"){
+    setQF(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
 
-    if(round==="SF"){
-      setFinal(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+    setSF(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;
+      return c;
+    });
+  }
 
-    if(round==="FINAL"){
-      setWinner(team);
-    }
-  };
+  if(round==="QF"){
+    setSF(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
 
+    setFinal(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;
+      return c;
+    });
+  }
+
+  if(round==="SF"){
+    setFinal(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
+
+  if(round==="FINAL"){
+    setWinner(team);
+  }
+};
   // 🔹 GENERATE BRACKET
   const generateBracket = ()=>{
 
