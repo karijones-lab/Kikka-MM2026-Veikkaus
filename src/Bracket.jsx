@@ -35,6 +35,19 @@ export default function Bracket(){
     return ()=>unsub();
   },[]);
 
+  useEffect(()=>{
+  if(current && allData[current]){
+    const d = allData[current];
+
+    setPicks(d.picks || {});
+    setR16(d.r16 || Array(16).fill(""));
+    setQF(d.qf || Array(8).fill(""));
+    setSF(d.sf || Array(4).fill(""));
+    setFinal(d.final || ["",""]);
+    setWinner(d.winner || "");
+  }
+},[current, allData]);
+
   // 🔹 LISÄÄ PELAAJA
   const addPlayer = ()=>{
     if(!input) return;
