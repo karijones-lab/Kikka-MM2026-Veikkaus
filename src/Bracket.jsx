@@ -158,26 +158,26 @@ export default function Bracket(){
 
   try {
 
-    console.log("🔥 SAVING:", current);
+    const cleanData = {
+      picks: picks || {},
+      r16: r16.map(t => t || ""),
+      qf: qf.map(t => t || ""),
+      sf: sf.map(t => t || ""),
+      final: final.map(t => t || ""),
+      winner: winner || ""
+    };
+
+    console.log("🔥 CLEAN DATA:", cleanData);
 
     await setDoc(
       doc(db,"veikkaus","data"),
       {
-        [current]: {
-          picks,
-          r16,
-          qf,
-          sf,
-          final,
-          winner
-        }
+        [current]: cleanData
       },
       { merge:true }
     );
 
-    console.log("✅ SUCCESS");
-
-    alert("Tallennettu!");
+    alert("✅ Tallennettu!");
 
   } catch(err){
     console.error("❌ ERROR:", err);
