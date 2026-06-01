@@ -296,7 +296,12 @@ export default function Bracket(){
 
           </div>
 
-          <button onClick={saveToFirebase}>💾 Tallenna</button>
+          <button onClick={()=>{
+  console.log("🔥 BUTTON CLICKED");
+  saveToFirebase();
+}}>
+  💾 Tallenna
+</button>
         </>
       )}
 
