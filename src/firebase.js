@@ -1,4 +1,3 @@
-console.log("🔥 PROJECT ID:", firebaseConfig.projectId);
 import { initializeApp } from "firebase/app";
 import { initializeFirestore } from "firebase/firestore";
 
@@ -10,6 +9,8 @@ const firebaseConfig = {
   messagingSenderId: "SINUN",
   appId: "SINUN"
 };
+
+console.log("🔥 PROJECT ID:", firebaseConfig.projectId);
 
 const app = initializeApp(firebaseConfig);
 
