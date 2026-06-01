@@ -1,3 +1,4 @@
+// FORCE FIREBASE UPDATE v2
 import { initializeApp } from "firebase/app";
 import { initializeFirestore } from "firebase/firestore";
 
