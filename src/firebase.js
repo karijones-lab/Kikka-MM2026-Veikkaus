@@ -1,3 +1,4 @@
+console.log("🔥 PROJECT ID:", firebaseConfig.projectId);
 import { initializeApp } from "firebase/app";
 import { initializeFirestore } from "firebase/firestore";
 
