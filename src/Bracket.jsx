@@ -185,13 +185,7 @@ export default function Bracket(){
     alert("Tallennus epäonnistui");
   }
 };
-    alert("✅ Tallennettu onnistuneesti!");
-
-  } catch(err){
-    console.error("SAVE ERROR:", err);
-    alert("❌ Tallennus epäonnistui");
-  }
-};
+   
   // 🎨 UI
   const box = (team, selected)=>({
     background:selected?"#22c55e":"#1e293b",
