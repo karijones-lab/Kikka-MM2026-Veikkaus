@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "SINUN",
@@ -12,7 +12,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// 🔥 TÄRKEÄ LISÄYS
-export const db = getFirestore(app, {
-  experimentalForceLongPolling: true
-});
+// 🔥 TÄRKEÄ: EI extra options tähän
+export const db = getFirestore(app);
