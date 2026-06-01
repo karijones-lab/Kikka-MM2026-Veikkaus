@@ -26,6 +26,9 @@ export default function Bracket(){
         setAllData(snap.data());
       }
     });
+    useEffect(()=>{
+  console.log("🔥 DB TEST:", db);
+},[]);
     return ()=>unsub();
   },[]);
 
