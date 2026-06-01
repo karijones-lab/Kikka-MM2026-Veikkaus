@@ -157,6 +157,8 @@ useEffect(()=>{
 
  const saveToFirebase = async ()=>{
 
+  console.log("🔥 SAVE START");
+
   if(!current){
     alert("Valitse pelaaja");
     return;
@@ -173,7 +175,7 @@ useEffect(()=>{
       winner: winner || ""
     };
 
-    console.log("🔥 CLEAN DATA:", cleanData);
+    console.log("🔥 BEFORE FIREBASE");
 
     await setDoc(
       doc(db,"veikkaus","data"),
@@ -182,6 +184,8 @@ useEffect(()=>{
       },
       { merge:true }
     );
+
+    console.log("🔥 AFTER FIREBASE");
 
     alert("✅ Tallennettu!");
 
