@@ -175,9 +175,9 @@ useEffect(()=>{
       winner: winner || ""
     };
 
-    console.log("🔥 BEFORE FIREBASE");
+  console.log("🔥 BEFORE FIREBASE");
 
-    await Promise.race([
+await Promise.race([
   setDoc(
     doc(db,"veikkaus","data"),
     { [current]: cleanData },
@@ -187,17 +187,10 @@ useEffect(()=>{
     setTimeout(()=>reject("timeout"), 5000)
   )
 ]);
-      doc(db,"veikkaus","data"),
-      {
-        [current]: cleanData
-      },
-      { merge:true }
-    );
 
-    console.log("🔥 AFTER FIREBASE");
+console.log("🔥 AFTER FIREBASE");
 
-    alert("✅ Tallennettu!");
-
+alert("✅ Tallennettu!");
   } catch(err){
     console.error("❌ ERROR:", err);
     alert("Tallennus epäonnistui");
