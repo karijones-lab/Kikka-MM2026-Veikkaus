@@ -22,16 +22,18 @@ export default function Bracket(){
 
   // 🔹 FIREBASE SYNC
   useEffect(()=>{
-    const unsub = onSnapshot(doc(db,"veikkaus","data"),snap=>{
-      if(snap.exists()){
-        setAllData(snap.data());
-      }
-    });
-    useEffect(()=>{
+  const unsub = onSnapshot(doc(db,"veikkaus","data"),snap=>{
+    if(snap.exists()){
+      setAllData(snap.data());
+    }
+  });
+
+  return ()=>unsub();
+},[]);
+
+useEffect(()=>{
   console.log("🔥 DB TEST:", db);
 },[]);
-    return ()=>unsub();
-  },[]);
 
   // 🔹 LOAD PLAYER
   useEffect(()=>{
@@ -144,7 +146,10 @@ export default function Bracket(){
 
     const pairs=[];
     for(let i=0;i<32;i+=2){
-      pairs.push([qualified[i],qualified[i+1]]);
+     pairs.push([
+  qualified[i] || "",
+  qualified[i+1] || ""
+]);
     }
 
     setMatches(pairs);
@@ -252,44 +257,86 @@ export default function Bracket(){
 
           <button onClick={generateBracket}>Generoi</button>
 
-          <h3>🏆 Kaavio</h3>
+         <h3>🏆 Kaavio</h3>
 
-          <div style={{display:"flex",justifyContent:"space-between"}}>
+<div style={{display:"flex",justifyContent:"space-between"}}>
 
-            {/* LEFT */}
-            <div>
-              {matches.slice(0,8).map((m,i)=>(
-                <div key={i} style={{display:"flex",alignItems:"center"}}>
-                  <div>
-                    <div onClick={()=>pick(m[0],"R32",i)} style={box(m[0], r16.includes(m[0]))}>{m[0]}</div>
-                    <div onClick={()=>pick(m[1],"R32",i)} style={box(m[1], r16.includes(m[1]))}>{m[1]}</div>
-                  </div>
-                  <div style={line}></div>
-                </div>
-              ))}
-            </div>
-
-            {/* FINAL */}
-            <div style={{textAlign:"center"}}>
-              <div onClick={()=>pick(final[0],"FINAL",0)} style={box(final[0], winner===final[0])}>{final[0]}</div>
-              <div onClick={()=>pick(final[1],"FINAL",1)} style={box(final[1], winner===final[1])}>{final[1]}</div>
-              <h2>🏆 {winner}</h2>
-            </div>
-
-            {/* RIGHT */}
-            <div>
-              {matches.slice(8,16).map((m,i)=>(
-                <div key={i} style={{display:"flex",alignItems:"center"}}>
-                  <div style={line}></div>
-                  <div>
-                    <div onClick={()=>pick(m[0],"R32",i+8)} style={box(m[0], r16.includes(m[0]))}>{m[0]}</div>
-                    <div onClick={()=>pick(m[1],"R32",i+8)} style={box(m[1], r16.includes(m[1]))}>{m[1]}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
+  {/* LEFT */}
+  <div>
+    {(matches || []).slice(0,8).map((m,i)=>(
+      <div key={i} style={{display:"flex",alignItems:"center"}}>
+        
+        <div>
+          <div
+            onClick={()=>pick(m?.[0] || "","R32",i)}
+            style={box(m?.[0], r16.includes(m?.[0]))}
+          >
+            {m?.[0] || "-"}
           </div>
+
+          <div
+            onClick={()=>pick(m?.[1] || "","R32",i)}
+            style={box(m?.[1], r16.includes(m?.[1]))}
+          >
+            {m?.[1] || "-"}
+          </div>
+        </div>
+
+        <div style={line}></div>
+
+      </div>
+    ))}
+  </div>
+
+  {/* FINAL */}
+  <div style={{textAlign:"center"}}>
+
+    <div
+      onClick={()=>pick(final?.[0] || "","FINAL",0)}
+      style={box(final?.[0], winner===final?.[0])}
+    >
+      {final?.[0] || "-"}
+    </div>
+
+    <div
+      onClick={()=>pick(final?.[1] || "","FINAL",1)}
+      style={box(final?.[1], winner===final?.[1])}
+    >
+      {final?.[1] || "-"}
+    </div>
+
+    <h2>🏆 {winner || "-"}</h2>
+
+  </div>
+
+  {/* RIGHT */}
+  <div>
+    {(matches || []).slice(8,16).map((m,i)=>(
+      <div key={i} style={{display:"flex",alignItems:"center"}}>
+
+        <div style={line}></div>
+
+        <div>
+          <div
+            onClick={()=>pick(m?.[0] || "","R32",i+8)}
+            style={box(m?.[0], r16.includes(m?.[0]))}
+          >
+            {m?.[0] || "-"}
+          </div>
+
+          <div
+            onClick={()=>pick(m?.[1] || "","R32",i+8)}
+            style={box(m?.[1], r16.includes(m?.[1]))}
+          >
+            {m?.[1] || "-"}
+          </div>
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+</div>
 
           <button onClick={()=>{
   console.log("🔥 BUTTON CLICKED");
