@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, initializeFirestore } from "firebase/firestore";
+import { initializeFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "SINUN",
@@ -12,8 +12,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// 🔥 TÄMÄ ON OIKEA FIX
+// 🔥 tämä ratkaisee timeoutin
 export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
-  useFetchStreams: false
+  experimentalForceLongPolling: true
 });
