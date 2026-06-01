@@ -177,7 +177,16 @@ useEffect(()=>{
 
     console.log("🔥 BEFORE FIREBASE");
 
-    await setDoc(
+    await Promise.race([
+  setDoc(
+    doc(db,"veikkaus","data"),
+    { [current]: cleanData },
+    { merge:true }
+  ),
+  new Promise((_, reject)=>
+    setTimeout(()=>reject("timeout"), 5000)
+  )
+]);
       doc(db,"veikkaus","data"),
       {
         [current]: cleanData
