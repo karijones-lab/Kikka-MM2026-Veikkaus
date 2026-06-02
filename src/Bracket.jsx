@@ -232,35 +232,32 @@ alert("✅ Tallennettu!");
   };
 
   return (
-    <div style={{background:"#020617",color:"white",padding:"20px"}}>
+   <div>
+  {Object.keys(allData).map(player => {
+    const data = allData[player] || {};
 
-      <h1>🏆 MM Veikkaus</h1>
+    const score =
+      (data.r16?.filter(Boolean).length || 0) +
+      (data.qf?.filter(Boolean).length || 0) +
+      (data.sf?.filter(Boolean).length || 0) +
+      (data.final?.filter(Boolean).length || 0) +
+      (data.winner ? 5 : 0);
 
-      <input value={input} onChange={e=>setInput(e.target.value)} />
-      <button onClick={addPlayer}>Lisää</button>
-
-      <div>
-        {players.map(p=>(
-          <button key={p} onClick={()=>setCurrent(p)}>{p}</button>
-        ))}
+    return (
+      <div
+        key={player}
+        style={{
+          background:"#1e293b",
+          margin:"5px",
+          padding:"10px",
+          borderRadius:"10px"
+        }}
+      >
+        🧑 {player} — ⭐ {score} pistettä
       </div>
-
-      {current && (
-        <>
-          <h2>{current}</h2>
-
-          {Object.keys(groups).map(g=>(
-            <div key={g}>
-              <b>{g}</b>
-              {[1,2].map(pos=>(
-                <select key={pos}
-                  onChange={(e)=>updatePick(g,pos,e.target.value)}
-                >
-                  <option>Valitse</option>
-                  {groups[g].map(t=><option key={t}>{t}</option>)}
-                </select>
-              ))}
-            </div>
+    );
+  })}
+</div>
           ))}
 
           <button onClick={generateBracket}>Generoi</button>
