@@ -374,8 +374,5 @@ alert("✅ Tallennettu!");
       }}>
         🧑 {player} — ⭐ {score} pistettä
       </div>
-    );
-  })}
-</div>
-     );
+      );
 }
