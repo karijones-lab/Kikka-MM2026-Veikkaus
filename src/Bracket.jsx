@@ -367,7 +367,7 @@ alert("✅ Tallennettu!");
       (data.final?.filter(Boolean).length || 0) +
       (data.winner ? 5 : 0);
 
-   return (
+  return (
   <div style={{background:"#020617",color:"white",padding:"20px"}}>
 
     <h1>🏆 MM Veikkaus</h1>
@@ -401,13 +401,52 @@ alert("✅ Tallennettu!");
 
         <button onClick={generateBracket}>Generoi</button>
 
+        <h3>🏆 Kaavio</h3>
+
+        <div style={{display:"flex",justifyContent:"space-between"}}>
+          <div>
+            {(matches || []).slice(0,8).map((m,i)=>(
+              <div key={i}>
+                <div onClick={()=>pick(m?.[0],"R32",i)} style={box(m?.[0], r16.includes(m?.[0]))}>
+                  {m?.[0] || "-"}
+                </div>
+                <div onClick={()=>pick(m?.[1],"R32",i)} style={box(m?.[1], r16.includes(m?.[1]))}>
+                  {m?.[1] || "-"}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{textAlign:"center"}}>
+            <div onClick={()=>pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
+              {final?.[0] || "-"}
+            </div>
+            <div onClick={()=>pick(final?.[1],"FINAL",1)} style={box(final?.[1], winner===final?.[1])}>
+              {final?.[1] || "-"}
+            </div>
+            <h2>🏆 {winner || "-"}</h2>
+          </div>
+
+          <div>
+            {(matches || []).slice(8,16).map((m,i)=>(
+              <div key={i}>
+                <div onClick={()=>pick(m?.[0],"R32",i+8)} style={box(m?.[0], r16.includes(m?.[0]))}>
+                  {m?.[0] || "-"}
+                </div>
+                <div onClick={()=>pick(m?.[1],"R32",i+8)} style={box(m?.[1], r16.includes(m?.[1]))}>
+                  {m?.[1] || "-"}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <button onClick={()=>{
           console.log("🔥 BUTTON CLICKED");
           saveToFirebase();
         }}>
           💾 Tallenna
         </button>
-
       </>
     )}
 
