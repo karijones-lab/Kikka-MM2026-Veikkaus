@@ -384,5 +384,5 @@ alert("✅ Tallennettu!");
   })}
 </div>
 
-</div>   {/* 🔥 TÄMÄ PUUTTUU MONESTI */}
+</div>
 );
