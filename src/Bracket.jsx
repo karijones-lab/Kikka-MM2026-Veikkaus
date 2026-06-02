@@ -352,7 +352,30 @@ alert("✅ Tallennettu!");
 </button>
         </>
       )}
+<h2>📊 Leaderboard</h2>
 
-    </div>
-  );
+<div>
+  {Object.keys(allData).map(player => {
+    const data = allData[player] || {};
+
+    const score =
+      (data.r16?.filter(Boolean).length || 0) +
+      (data.qf?.filter(Boolean).length || 0) +
+      (data.sf?.filter(Boolean).length || 0) +
+      (data.final?.filter(Boolean).length || 0) +
+      (data.winner ? 5 : 0);
+
+    return (
+      <div key={player} style={{
+        background:"#1e293b",
+        margin:"5px",
+        padding:"10px",
+        borderRadius:"10px"
+      }}>
+        🧑 {player} — ⭐ {score} pistettä
+      </div>
+    );
+  })}
+</div>
+     );
 }
