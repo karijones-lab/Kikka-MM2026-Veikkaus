@@ -344,14 +344,17 @@ alert("✅ Tallennettu!");
 
 </div>
 
-          <button onClick={()=>{
+         <button onClick={()=>{
   console.log("🔥 BUTTON CLICKED");
   saveToFirebase();
 }}>
   💾 Tallenna
 </button>
-        </>
-      )}
+
+</>
+)}
+
+{/* 🔥 LEADERBOARD */}
 <h2>📊 Leaderboard</h2>
 
 <div>
@@ -366,13 +369,17 @@ alert("✅ Tallennettu!");
       (data.winner ? 5 : 0);
 
     return (
-      <div key={player} style={{
-        background:"#1e293b",
-        margin:"5px",
-        padding:"10px",
-        borderRadius:"10px"
-      }}>
+      <div
+        key={player}
+        style={{
+          background:"#1e293b",
+          margin:"5px",
+          padding:"10px",
+          borderRadius:"10px"
+        }}
+      >
         🧑 {player} — ⭐ {score} pistettä
       </div>
-      );
-}
+    );
+  })}
+</div>
