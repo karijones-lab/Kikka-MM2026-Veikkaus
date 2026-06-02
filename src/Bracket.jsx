@@ -258,8 +258,8 @@ alert("✅ Tallennettu!");
     );
   })}
 </div>
-     
-          <button onClick={generateBracket}>Generoi</button>
+)}
+               <button onClick={generateBracket}>Generoi</button>
 
          <h3>🏆 Kaavio</h3>
 
