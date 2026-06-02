@@ -346,7 +346,7 @@ alert("✅ Tallennettu!");
 
 </div>
 
-        <button onClick={()=>{
+       <button onClick={()=>{
   console.log("🔥 BUTTON CLICKED");
   saveToFirebase();
 }}>
