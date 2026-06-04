@@ -370,14 +370,6 @@ data.final?.forEach(t=>{
 
 if(data.winner === correct.winner) score += 10;
 
-          const correct = {
-  r16: [],
-  qf: [],
-  sf: [],
-  final: [],
-  winner: ""
-};
-
 const correct = {
   r16: [],
   qf: [],
