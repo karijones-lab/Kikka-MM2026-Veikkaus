@@ -350,12 +350,25 @@ alert("✅ Tallennettu!");
       {Object.keys(allData || {}).map(player => {
         const data = allData[player] || {};
 
-        const score =
-          (data.r16?.filter(Boolean).length || 0) +
-          (data.qf?.filter(Boolean).length || 0) +
-          (data.sf?.filter(Boolean).length || 0) +
-          (data.final?.filter(Boolean).length || 0) +
-          (data.winner ? 5 : 0);
+        let score = 0;
+
+data.r16?.forEach(t=>{
+  if(correct.r16.includes(t)) score += 1;
+});
+
+data.qf?.forEach(t=>{
+  if(correct.qf.includes(t)) score += 2;
+});
+
+data.sf?.forEach(t=>{
+  if(correct.sf.includes(t)) score += 3;
+});
+
+data.final?.forEach(t=>{
+  if(correct.final.includes(t)) score += 5;
+});
+
+if(data.winner === correct.winner) score += 10;
 
           const correct = {
   r16: [],
@@ -365,6 +378,13 @@ alert("✅ Tallennettu!");
   winner: ""
 };
 
+const correct = {
+  r16: [],
+  qf: [],
+  sf: [],
+  final: [],
+  winner: ""
+};
         return (
           <div
             key={player}
