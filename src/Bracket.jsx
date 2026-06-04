@@ -357,6 +357,14 @@ alert("✅ Tallennettu!");
           (data.final?.filter(Boolean).length || 0) +
           (data.winner ? 5 : 0);
 
+          const correct = {
+  r16: [],
+  qf: [],
+  sf: [],
+  final: [],
+  winner: ""
+};
+
         return (
           <div
             key={player}
