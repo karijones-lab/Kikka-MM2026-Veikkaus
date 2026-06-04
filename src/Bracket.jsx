@@ -212,7 +212,15 @@ alert("✅ Tallennettu!");
     K:["Portugal","DR Congo","Uzbekistan","Colombia"],
     L:["England","Croatia","Ghana","Panama"]
   };
-
+  
+const correct = {
+  r16: [],
+  qf: [],
+  sf: [],
+  final: [],
+  winner: ""
+};
+  
     return (
   <div style={{background:"#020617",color:"white",padding:"20px"}}>
 
@@ -370,13 +378,6 @@ data.final?.forEach(t=>{
 
 if(data.winner === correct.winner) score += 10;
 
-const correct = {
-  r16: [],
-  qf: [],
-  sf: [],
-  final: [],
-  winner: ""
-};
         return (
           <div
             key={player}
