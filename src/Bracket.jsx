@@ -249,6 +249,25 @@ alert("✅ Tallennettu!");
   <>
     <h2>{current}</h2>
 
+    {Object.keys(groups).map(g => (
+  <div key={g}>
+    <b>{g}</b>
+
+    {[1,2].map(pos => (
+      <select
+        key={pos}
+        onChange={(e)=>updatePick(g,pos,e.target.value)}
+      >
+        <option>Valitse</option>
+        {groups[g].map(t => (
+          <option key={t}>{t}</option>
+        ))}
+      </select>
+    ))}
+
+  </div>
+))}
+
     <button onClick={generateBracket}>Generoi</button>
 
     <button onClick={saveToFirebase}>
