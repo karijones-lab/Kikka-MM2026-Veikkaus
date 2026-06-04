@@ -355,43 +355,48 @@ alert("✅ Tallennettu!");
     <h2>📊 Leaderboard</h2>
 
     <div>
-      {Object.keys(allData || {}).map(player => {
-        const data = allData[player] || {};
+{Object.entries(allData || {})
+  .map(([player, data]) => {
 
-        let score = 0;
+    let score = 0;
 
-data.r16?.forEach(t=>{
-  if(correct.r16.includes(t)) score += 1;
-});
+    data.r16?.forEach(t=>{
+      if(correct.r16.includes(t)) score += 1;
+    });
 
-data.qf?.forEach(t=>{
-  if(correct.qf.includes(t)) score += 2;
-});
+    data.qf?.forEach(t=>{
+      if(correct.qf.includes(t)) score += 2;
+    });
 
-data.sf?.forEach(t=>{
-  if(correct.sf.includes(t)) score += 3;
-});
+    data.sf?.forEach(t=>{
+      if(correct.sf.includes(t)) score += 3;
+    });
 
-data.final?.forEach(t=>{
-  if(correct.final.includes(t)) score += 5;
-});
+    data.final?.forEach(t=>{
+      if(correct.final.includes(t)) score += 5;
+    });
 
-if(data.winner === correct.winner) score += 10;
+    if(data.winner === correct.winner) score += 10;
 
-        return (
-          <div
-            key={player}
-            style={{
-              background:"#1e293b",
-              margin:"5px",
-              padding:"10px",
-              borderRadius:"10px"
-            }}
-          >
-            🧑 {player} — ⭐ {score}
-          </div>
-        );
-      })}
+    return { player, score };
+  })
+  .sort((a,b)=>b.score-a.score)
+  .map(({player, score}, i) => (
+    <div
+      key={player}
+      style={{
+        background: i === 0 ? "#facc15" : "#1e293b",
+        color: i === 0 ? "#000" : "#fff",
+        margin:"5px",
+        padding:"10px",
+        borderRadius:"10px",
+        fontWeight: i === 0 ? "bold" : "normal"
+      }}
+    >
+      {i === 0 ? "🥇" : "🧑"} {player} — ⭐ {score}
+    </div>
+  ))
+}
     </div>
 
   </div>
