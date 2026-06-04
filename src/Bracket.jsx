@@ -65,47 +65,44 @@ useEffect(()=>{
   };
 
   // 🔥 AUTO ETENEMINEN
-  const pick = (team, round, index)=>{
+ const pick = (team, round, index)=>{
 
-    if(round==="R32"){
-      setR16(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-   
-    }
+  if(round==="R32"){
+    setR16(prev=>{
+      const c=[...prev];
+      c[index]=team;
+      return c;
+    });
+  }
 
-    if(round==="R16"){
-      setQF(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    
-    }
+  if(round==="R16"){
+    setQF(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ MUUTTUU
+      return c;
+    });
+  }
 
-    if(round==="QF"){
-      setSF(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    
-    }
+  if(round==="QF"){
+    setSF(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ
+      return c;
+    });
+  }
 
-    if(round==="SF"){
-      setFinal(prev=>{
-        const c=[...prev];
-        c[index]=team;
-        return c;
-      });
-    }
+  if(round==="SF"){
+    setFinal(prev=>{
+      const c=[...prev];
+      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ
+      return c;
+    });
+  }
 
-    if(round==="FINAL"){
-      setWinner(team);
-    }
-  };
+  if(round==="FINAL"){
+    setWinner(team);
+  }
+};
 
   // 🔹 GENERATE
   const generateBracket = ()=>{
