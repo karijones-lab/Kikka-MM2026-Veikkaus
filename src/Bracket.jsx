@@ -403,6 +403,7 @@ alert("✅ Tallennettu!");
         <h3>🏆 Kaavio</h3>
 
         <div style={{display:"flex",justifyContent:"space-between"}}>
+
           <div>
             {(matches || []).slice(0,8).map((m,i)=>(
               <div key={i}>
@@ -438,6 +439,7 @@ alert("✅ Tallennettu!");
               </div>
             ))}
           </div>
+
         </div>
 
         <button onClick={()=>{
@@ -453,7 +455,7 @@ alert("✅ Tallennettu!");
     <h2>📊 Leaderboard</h2>
 
     <div>
-      {Object.keys(allData).map(player => {
+      {Object.keys(allData || {}).map(player => {
         const data = allData[player] || {};
 
         const score =
