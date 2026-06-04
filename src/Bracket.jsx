@@ -390,6 +390,11 @@ const isLocked = new Date() > DEADLINE;
     return { player, score };
   })
   .sort((a,b)=>b.score-a.score)
+  .map((item, i, arr) => ({
+  ...item,
+  diff: i === 0 ? 0 : arr[0].score - item.score
+}))
+
   .map(({player, score}, i) => (
     <div
       key={player}
