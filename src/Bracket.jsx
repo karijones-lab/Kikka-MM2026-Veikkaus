@@ -390,7 +390,6 @@ alert("✅ Tallennettu!");
       💾 Tallenna
     </button>
 
-    {/* 🔥 LISÄÄ TÄMÄ SISÄLLE */}
     <h3>🏆 Kaavio</h3>
 
     <div style={{display:"flex",justifyContent:"space-between"}}>
