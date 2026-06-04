@@ -376,8 +376,7 @@ data.final?.forEach(t=>{
   if(correct.final.includes(t)) score += 5;
 });
 
-if(data.winner === correct.winner) score += 10;
-});  
+if(data.winner === correct.winner) score += 10; 
 
         return (
           <div
