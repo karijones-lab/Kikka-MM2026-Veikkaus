@@ -380,17 +380,25 @@ alert("✅ Tallennettu!");
       ))}
     </div>
 
-    {current && (
-      <>
-        <h2>{current}</h2>
+   {current && (
+  <>
+    <h2>{current}</h2>
 
-        <button onClick={generateBracket}>Generoi</button>
+    <button onClick={generateBracket}>Generoi</button>
 
-        <button onClick={saveToFirebase}>
-          💾 Tallenna
-        </button>
-      </>
-    )}
+    <button onClick={saveToFirebase}>
+      💾 Tallenna
+    </button>
+
+    {/* 🔥 LISÄÄ TÄMÄ SISÄLLE */}
+    <h3>🏆 Kaavio</h3>
+
+    <div style={{display:"flex",justifyContent:"space-between"}}>
+      {/* bracket sisältö tähän */}
+    </div>
+
+  </>
+)}
 
     <h2>📊 Leaderboard</h2>
 
