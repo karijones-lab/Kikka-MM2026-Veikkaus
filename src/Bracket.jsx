@@ -221,11 +221,19 @@ alert("✅ Tallennettu!");
   winner: ""
 };
 
+const DEADLINE = new Date("2026-06-10T18:00:00");
+const isLocked = new Date() > DEADLINE;
+
     return (
   <div style={{background:"#020617",color:"white",padding:"20px"}}>
 
     <h1>🏆 MM Veikkaus</h1>
 
+{isLocked && (
+  <p style={{color:"red", fontWeight:"bold"}}>
+    🔒 Veikkaus on suljettu
+  </p>
+)}
     <input value={input} onChange={e=>setInput(e.target.value)} />
     <button onClick={addPlayer}>Lisää</button>
 
@@ -244,10 +252,11 @@ alert("✅ Tallennettu!");
     <b>{g}</b>
 
     {[1,2].map(pos => (
-      <select
-        key={pos}
-        onChange={(e)=>updatePick(g,pos,e.target.value)}
-      >
+     <select
+  key={pos}
+  disabled={isLocked}
+  onChange={(e)=>updatePick(g,pos,e.target.value)}
+>
         <option>Valitse</option>
         {groups[g].map(t => (
           <option key={t}>{t}</option>
@@ -260,7 +269,7 @@ alert("✅ Tallennettu!");
 
     <button onClick={generateBracket}>Generoi</button>
 
-    <button onClick={saveToFirebase}>
+    <button onClick={saveToFirebase} disabled={isLocked}>
       💾 Tallenna
     </button>
 
@@ -273,10 +282,10 @@ alert("✅ Tallennettu!");
     {(matches || []).slice(0,8).map((m,i)=>(
       
       <div key={i}>
-        <div onClick={()=>pick(m?.[0],"R32",i)} style={box(m?.[0], r16.includes(m?.[0]))}>
+        <div onClick={()=>!isLocked && pick(m?.[0],"R32",i)} style={box(m?.[0], r16.includes(m?.[0]))}>
           {m?.[0] || "-"}
         </div>
-        <div onClick={()=>pick(m?.[1],"R32",i)} style={box(m?.[1], r16.includes(m?.[1]))}>
+        <div onClick={()=>!isLocked && pick(m?.[1],"R32",i)} style={box(m?.[1], r16.includes(m?.[1]))}>
           {m?.[1] || "-"}
         </div>
       </div>
@@ -288,7 +297,7 @@ alert("✅ Tallennettu!");
   {r16.map((team,i)=>(
     <div
       key={i}
-      onClick={()=>pick(team,"R16",i)}
+      onClick={()=>!isLocked && pick(team,"R16",i)}
       style={box(team, qf.includes(team))}
     >
       {team || "-"}
@@ -301,7 +310,7 @@ alert("✅ Tallennettu!");
   {qf.map((team,i)=>(
     <div
       key={i}
-      onClick={()=>pick(team,"QF",i)}
+      onClick={()=>!isLocked && pick(team,"QF",i)}
       style={box(team, sf.includes(team))}
     >
       {team || "-"}
@@ -314,7 +323,7 @@ alert("✅ Tallennettu!");
   {sf.map((team,i)=>(
     <div
       key={i}
-      onClick={()=>pick(team,"SF",i)}
+      onClick={()=>!isLocked && pick(team,"SF",i)}
       style={box(team, final.includes(team))}
     >
       {team || "-"}
@@ -324,10 +333,10 @@ alert("✅ Tallennettu!");
 
   {/* FINAL */}
   <div style={{textAlign:"center"}}>
-    <div onClick={()=>pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
+    <div onClick={()=>!isLocked && pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
       {final?.[0] || "-"}
     </div>
-    <div onClick={()=>pick(final?.[1],"FINAL",1)} style={box(final?.[1], winner===final?.[1])}>
+    <div onClick={()=>!isLocked && pick(final?.[1],"FINAL",1)} style={box(final?.[1], winner===final?.[1])}>
       {final?.[1] || "-"}
     </div>
     <h2>🏆 {winner || "-"}</h2>
@@ -337,10 +346,10 @@ alert("✅ Tallennettu!");
   <div>
     {(matches || []).slice(8,16).map((m,i)=>(
       <div key={i}>
-        <div onClick={()=>pick(m?.[0],"R32",i+8)} style={box(m?.[0], r16.includes(m?.[0]))}>
+        <div onClick={()=>!isLocked && pick(m?.[0],"R32",i+8)} style={box(m?.[0], r16.includes(m?.[0]))}>
           {m?.[0] || "-"}
         </div>
-        <div onClick={()=>pick(m?.[1],"R32",i+8)} style={box(m?.[1], r16.includes(m?.[1]))}>
+        <div onClick={()=>!isLocked && pick(m?.[1],"R32",i+8)} style={box(m?.[1], r16.includes(m?.[1]))}>
           {m?.[1] || "-"}
         </div>
       </div>
