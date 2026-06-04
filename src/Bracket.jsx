@@ -377,6 +377,7 @@ data.final?.forEach(t=>{
 });
 
 if(data.winner === correct.winner) score += 10;
+});  
 
         return (
           <div
