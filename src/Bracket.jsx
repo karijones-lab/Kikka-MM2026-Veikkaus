@@ -292,6 +292,45 @@ alert("✅ Tallennettu!");
     ))}
   </div>
 
+     {/* R16 */}
+<div>
+  {r16.map((team,i)=>(
+    <div
+      key={i}
+      onClick={()=>pick(team,"R16",i)}
+      style={box(team, qf.includes(team))}
+    >
+      {team || "-"}
+    </div>
+  ))}
+</div>
+
+{/* QF */}
+<div>
+  {qf.map((team,i)=>(
+    <div
+      key={i}
+      onClick={()=>pick(team,"QF",i)}
+      style={box(team, sf.includes(team))}
+    >
+      {team || "-"}
+    </div>
+  ))}
+</div>
+
+{/* SF */}
+<div>
+  {sf.map((team,i)=>(
+    <div
+      key={i}
+      onClick={()=>pick(team,"SF",i)}
+      style={box(team, final.includes(team))}
+    >
+      {team || "-"}
+    </div>
+  ))}
+</div>
+
   {/* FINAL */}
   <div style={{textAlign:"center"}}>
     <div onClick={()=>pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
