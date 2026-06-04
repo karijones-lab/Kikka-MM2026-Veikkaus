@@ -257,9 +257,48 @@ alert("✅ Tallennettu!");
 
       <h3>🏆 Kaavio</h3>
 
-    <div style={{display:"flex",justifyContent:"space-between"}}>
-      {/* bracket sisältö tähän */}
+   <div style={{display:"flex",justifyContent:"space-between"}}>
+
+  {/* LEFT */}
+  <div>
+    {(matches || []).slice(0,8).map((m,i)=>(
+      <div key={i}>
+        <div onClick={()=>pick(m?.[0],"R32",i)} style={box(m?.[0], r16.includes(m?.[0]))}>
+          {m?.[0] || "-"}
+        </div>
+        <div onClick={()=>pick(m?.[1],"R32",i)} style={box(m?.[1], r16.includes(m?.[1]))}>
+          {m?.[1] || "-"}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* FINAL */}
+  <div style={{textAlign:"center"}}>
+    <div onClick={()=>pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
+      {final?.[0] || "-"}
     </div>
+    <div onClick={()=>pick(final?.[1],"FINAL",1)} style={box(final?.[1], winner===final?.[1])}>
+      {final?.[1] || "-"}
+    </div>
+    <h2>🏆 {winner || "-"}</h2>
+  </div>
+
+  {/* RIGHT */}
+  <div>
+    {(matches || []).slice(8,16).map((m,i)=>(
+      <div key={i}>
+        <div onClick={()=>pick(m?.[0],"R32",i+8)} style={box(m?.[0], r16.includes(m?.[0]))}>
+          {m?.[0] || "-"}
+        </div>
+        <div onClick={()=>pick(m?.[1],"R32",i+8)} style={box(m?.[1], r16.includes(m?.[1]))}>
+          {m?.[1] || "-"}
+        </div>
+      </div>
+    ))}
+  </div>
+
+</div>
 
   </>
 )}
