@@ -73,12 +73,7 @@ useEffect(()=>{
         c[index]=team;
         return c;
       });
-
-      setQF(prev=>{
-        const c=[...prev];
-        c[Math.floor(index/2)] = team;
-        return c;
-      });
+   
     }
 
     if(round==="R16"){
@@ -87,12 +82,7 @@ useEffect(()=>{
         c[index]=team;
         return c;
       });
-
-      setSF(prev=>{
-        const c=[...prev];
-        c[Math.floor(index/2)] = team;
-        return c;
-      });
+    
     }
 
     if(round==="QF"){
@@ -101,12 +91,7 @@ useEffect(()=>{
         c[index]=team;
         return c;
       });
-
-      setFinal(prev=>{
-        const c=[...prev];
-        c[Math.floor(index/2)] = team;
-        return c;
-      });
+    
     }
 
     if(round==="SF"){
@@ -276,11 +261,12 @@ alert("✅ Tallennettu!");
 
       <h3>🏆 Kaavio</h3>
 
-   <div style={{display:"flex",justifyContent:"space-between"}}>
+    <div style={{display:"flex",justifyContent:"space-between"}}>
 
   {/* LEFT */}
   <div>
     {(matches || []).slice(0,8).map((m,i)=>(
+      
       <div key={i}>
         <div onClick={()=>pick(m?.[0],"R32",i)} style={box(m?.[0], r16.includes(m?.[0]))}>
           {m?.[0] || "-"}
@@ -292,7 +278,7 @@ alert("✅ Tallennettu!");
     ))}
   </div>
 
-     {/* R16 */}
+  {/* R16 */}
 <div>
   {r16.map((team,i)=>(
     <div
