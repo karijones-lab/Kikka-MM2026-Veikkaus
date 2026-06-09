@@ -49,6 +49,8 @@ useEffect(()=>{
       setSF(d.sf || Array(4).fill(""));
       setFinal(d.final || ["",""]);
       setWinner(d.winner || "");
+      setPredFinal(d.predFinal || ["",""]);
+      setPredWinner(d.predWinner || "");
     }
   },[current, allData]);
 
