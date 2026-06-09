@@ -19,6 +19,8 @@ export default function Bracket(){
   const [sf,setSF] = useState(Array(4).fill(""));
   const [final,setFinal] = useState(["",""]);
   const [winner,setWinner] = useState("");
+  const [predFinal,setPredFinal] = useState(["",""]);
+  const [predWinner,setPredWinner] = useState("");
 
   const [allData,setAllData] = useState({});
 
