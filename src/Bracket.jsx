@@ -153,6 +153,8 @@ const qualified=[
       sf: sf.map(t => t || ""),
       final: final.map(t => t || ""),
       winner: winner || ""
+      predFinal: predFinal,
+      predWinner: predWinner,
     };
 
   console.log("🔥 BEFORE FIREBASE");
