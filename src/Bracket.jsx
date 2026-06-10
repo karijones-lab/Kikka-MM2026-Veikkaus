@@ -415,7 +415,7 @@ const isLocked = new Date() > DEADLINE;
   diff: i === 0 ? 0 : arr[0].score - item.score
 }))
 
- .map(({player, score, predWinner}, i) => (
+.map(({player, score, predWinner, diff}, i) => (
     <div
       key={player}
       style={{
@@ -428,15 +428,12 @@ const isLocked = new Date() > DEADLINE;
       }}
     >
   {i === 0 ? "🥇" : "🧑"} {player} — ⭐ {score}
+{diff > 0 && ` (-${diff})`}
 {correct.winner && predWinner === correct.winner && " 🎯"}
     </div>
   ))
 }
     </div>
-
-  </div>
-);
-}
 
   </div>
 );
