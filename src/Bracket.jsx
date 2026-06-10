@@ -405,7 +405,8 @@ const isLocked = new Date() > DEADLINE;
     });
 
     if(correct.winner && data.winner === correct.winner) score += 10;
-
+    // ennakkovoittaja
+    if(correct.winner && data.predWinner === correct.winner) score += 15;
     return { player, score };
   })
   .sort((a,b)=>b.score-a.score)
