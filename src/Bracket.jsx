@@ -407,7 +407,7 @@ const isLocked = new Date() > DEADLINE;
     if(correct.winner && data.winner === correct.winner) score += 10;
     // ennakkovoittaja
     if(correct.winner && data.predWinner === correct.winner) score += 15;
-    return { player, score };
+   return { player, score, predWinner: data.predWinner };
   })
   .sort((a,b)=>b.score-a.score)
   .map((item, i, arr) => ({
@@ -415,7 +415,7 @@ const isLocked = new Date() > DEADLINE;
   diff: i === 0 ? 0 : arr[0].score - item.score
 }))
 
-  .map(({player, score}, i) => (
+ .map(({player, score, predWinner}, i) => (
     <div
       key={player}
       style={{
@@ -427,11 +427,16 @@ const isLocked = new Date() > DEADLINE;
         fontWeight: i === 0 ? "bold" : "normal"
       }}
     >
-      {i === 0 ? "🥇" : "🧑"} {player} — ⭐ {score}
+  {i === 0 ? "🥇" : "🧑"} {player} — ⭐ {score}
+{correct.winner && predWinner === correct.winner && " 🎯"}
     </div>
   ))
 }
     </div>
+
+  </div>
+);
+}
 
   </div>
 );
