@@ -432,6 +432,13 @@ const isLocked = new Date() > DEADLINE;
   {i === 0 ? "🥇" : "🧑"} {player} — ⭐ {score}
 {diff > 0 && ` (-${diff})`}
 {correct.winner && predWinner === correct.winner && " 🎯"}
+
+  <div>
+      <button onClick={()=>setCurrent(player)}>
+        👁 Katso veikkaus
+      </button>
+    </div>
+    
     </div>
   ))
 }
