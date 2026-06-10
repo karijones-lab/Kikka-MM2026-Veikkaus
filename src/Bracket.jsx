@@ -250,6 +250,9 @@ const isLocked = new Date() > DEADLINE;
     <p>🔮 {predFinal[0]} vs {predFinal[1]}</p>
     <p>🏆 {predWinner}</p>
 
+    <h4>📊 Lohkoveikkaukset</h4>
+    <pre>{JSON.stringify(picks, null, 2)}</pre>
+
 <select onChange={(e)=>setPredFinal([e.target.value, predFinal[1]])}>
   <option>Finaalisti 1</option>
   {Object.values(groups).flat().map(t=>(
