@@ -152,7 +152,7 @@ const qualified=[
       qf: qf.map(t => t || ""),
       sf: sf.map(t => t || ""),
       final: final.map(t => t || ""),
-      winner: winner || ""
+      winner: winner || "",
       predFinal: predFinal,
       predWinner: predWinner,
     };
