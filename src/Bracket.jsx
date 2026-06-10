@@ -110,28 +110,20 @@ useEffect(()=>{
 
   // 🔹 GENERATE
   const generateBracket = ()=>{
-    let first={}, second={}, thirds=[];
+   let first={}, second={};
 
-    Object.keys(groups).forEach(g=>{
-      const p = picks[g];
-      if(!p?.[1] || !p?.[2]) return;
+Object.keys(groups).forEach(g=>{
+  const p = picks[g];
+  if(!p?.[1] || !p?.[2]) return;
 
-      first[g]=p[1];
-      second[g]=p[2];
+  first[g]=p[1];
+  second[g]=p[2];
+});
 
-      const third = groups[g].find(t=>t!==p[1] && t!==p[2]);
-      thirds.push({team:third,score:Math.random()});
-    });
-
-    thirds.sort((a,b)=>b.score-a.score);
-    const bestThirds = thirds.slice(0,8).map(t=>t.team);
-
-    const qualified=[
-      ...Object.values(first),
-      ...Object.values(second),
-      ...bestThirds
-    ];
-
+const qualified=[
+  ...Object.values(first),
+  ...Object.values(second)
+];
     const pairs=[];
     for(let i=0;i<32;i+=2){
      pairs.push([
@@ -251,6 +243,29 @@ const isLocked = new Date() > DEADLINE;
   <>
     <h2>{current}</h2>
 
+    <h3>🔮 Finaaliveikkaus</h3>
+
+<select onChange={(e)=>setPredFinal([e.target.value, predFinal[1]])}>
+  <option>Finaalisti 1</option>
+  {Object.values(groups).flat().map(t=>(
+    <option key={t}>{t}</option>
+  ))}
+</select>
+
+<select onChange={(e)=>setPredFinal([predFinal[0], e.target.value])}>
+  <option>Finaalisti 2</option>
+  {Object.values(groups).flat().map(t=>(
+    <option key={t}>{t}</option>
+  ))}
+</select>
+
+<select onChange={(e)=>setPredWinner(e.target.value)}>
+  <option>Voittaja</option>
+  {Object.values(groups).flat().map(t=>(
+    <option key={t}>{t}</option>
+  ))}
+</select>
+    
     {Object.keys(groups).map(g => (
   <div key={g}>
     <b>{g}</b>
@@ -389,7 +404,7 @@ const isLocked = new Date() > DEADLINE;
       if(correct.final.includes(t)) score += 5;
     });
 
-    if(data.winner === correct.winner) score += 10;
+    if(correct.winner && data.winner === correct.winner) score += 10;
 
     return { player, score };
   })
