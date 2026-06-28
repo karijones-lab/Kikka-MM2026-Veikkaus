@@ -467,6 +467,25 @@ Object.keys(data.picks || {}).forEach(g=>{
 }}>
   👁 Katso veikkaus
 </button>
+{current === player && (
+  <div style={{marginTop:"10px", fontSize:"14px"}}>
+    
+    <b>R32 veikkaukset:</b>
+
+    {matches.length === 0 ? (
+      <div>⚠️ Generoi kaavio nähdäksesi parit</div>
+    ) : (
+      <div>
+        {(data.r16 || []).map((team, i) => (
+          <div key={i}>
+            {matches[i]?.[0] || "-"} vs {matches[i]?.[1] || "-"} → <b>{team || "-"}</b>
+          </div>
+        ))}
+      </div>
+    )}
+
+  </div>
+)}
     </div>
 
     </div>
