@@ -109,31 +109,9 @@ useEffect(()=>{
 };
 
   // 🔹 GENERATE
-  const generateBracket = ()=>{
-   let first={}, second={};
-
-Object.keys(groups).forEach(g=>{
-  const p = picks[g];
-  if(!p?.[1] || !p?.[2]) return;
-
-  first[g]=p[1];
-  second[g]=p[2];
-});
-
-const qualified=[
-  ...Object.values(first),
-  ...Object.values(second)
-];
-    const pairs=[];
-    for(let i=0;i<32;i+=2){
-     pairs.push([
-  qualified[i] || "",
-  qualified[i+1] || ""
-]);
-    }
-
-    setMatches(pairs);
-  };
+const generateBracket = ()=>{
+  setMatches(R32_MATCHES);
+};
 
  const saveToFirebase = async ()=>{
 
@@ -211,7 +189,41 @@ alert("✅ Tallennettu!");
     L:["England","Croatia","Ghana","Panama"]
   };
 
+  const R32_MATCHES = [
+  ["South Africa", "Canada"],
+  ["Germany", "Paraguay"],
+  ["Brazil", "Japan"],
+  ["France", "Sweden"],
+  ["Netherlands", "Morocco"],
+  ["Ivory Coast", "Norway"],
+  ["Belgium", "Senegal"],
+  ["Mexico", "Ecuador"],
+  ["England", "DR Congo"],
+  ["Spain", "Austria"],
+  ["USA", "Bosnia"],
+  ["Argentina", "Cabo Verde"],
+  ["Portugal", "Croatia"],
+  ["Australia", "Egypt"],
+  ["Switzerland", "Algeria"],
+  ["Colombia", "Ghana"],
+];
+
   const correct = {
+  
+  groups: {
+    A: ["Mexico","South Africa"],
+    B: ["Switzerland","Canada"],
+    C: ["Brazil","Morocco"],
+    D: ["USA","Australia"],
+    E: ["Germany","Ivory Coast"],
+    F: ["Netherlands","Japan"],
+    G: ["Belgium","Egypt"],
+    H: ["Spain","Cabo Verde"],
+    I: ["France","Norway"],
+    J: ["Argentina","Austria"],
+    K: ["Colombia","Portugal"],
+    L: ["England","Croatia"]
+  },
   r16: [],
   qf: [],
   sf: [],
@@ -219,7 +231,7 @@ alert("✅ Tallennettu!");
   winner: ""
 };
 
-const DEADLINE = new Date("2026-06-11T18:00:00");
+const DEADLINE = new Date("2026-06-28T19:00:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
@@ -294,7 +306,9 @@ const isLocked = new Date() > DEADLINE;
   </div>
 ))}
 
-    <button onClick={generateBracket}>Generoi</button>
+    <button onClick={generateBracket} disabled={matches.length > 0}>
+  Generoi
+</button>
 
     <button onClick={saveToFirebase} disabled={isLocked}>
       💾 Tallenna
@@ -396,6 +410,17 @@ const isLocked = new Date() > DEADLINE;
 
     let score = 0;
 
+    // lohkot
+Object.keys(data.picks || {}).forEach(g=>{
+  const p = data.picks[g];
+  const correctGroup = correct.groups[g];
+
+  if(!p || !correctGroup) return;
+
+  if(p[1] === correctGroup[0]) score += 2; // voittaja oikein
+  if(p[2] === correctGroup[1]) score += 3; // kakkonen oikein
+});
+
     data.r16?.forEach(t=>{
       if(correct.r16.includes(t)) score += 1;
     });
@@ -453,3 +478,4 @@ const isLocked = new Date() > DEADLINE;
   </div>
 );
 }
+
