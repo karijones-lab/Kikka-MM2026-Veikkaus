@@ -465,9 +465,12 @@ Object.keys(data.picks || {}).forEach(g=>{
 {correct.winner && predWinner === correct.winner && " 🎯"}
 
   <div>
-      <button onClick={()=>setCurrent(player)}>
-        👁 Katso veikkaus
-      </button>
+   <button onClick={()=>{
+  setCurrent(player);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}}>
+  👁 Katso veikkaus
+</button>
     </div>
 
     </div>
