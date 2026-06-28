@@ -52,7 +52,7 @@ useEffect(()=>{
       setPredFinal(d.predFinal || ["",""]);
       setPredWinner(d.predWinner || "");
 
-      setMatches([]); //
+      //
     }
   },[current, allData]);
 
@@ -308,7 +308,7 @@ const isLocked = new Date() > DEADLINE;
   </div>
 ))}
 
-    <button onClick={generateBracket} disabled={matches.length > 0}>
+  <button onClick={generateBracket}>
   Generoi
 </button>
 
