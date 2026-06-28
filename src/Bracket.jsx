@@ -51,6 +51,8 @@ useEffect(()=>{
       setWinner(d.winner || "");
       setPredFinal(d.predFinal || ["",""]);
       setPredWinner(d.predWinner || "");
+
+      setMatches([]); //
     }
   },[current, allData]);
 
@@ -265,21 +267,21 @@ const isLocked = new Date() > DEADLINE;
     <h4>📊 Lohkoveikkaukset</h4>
     <pre>{JSON.stringify(picks, null, 2)}</pre>
 
-<select onChange={(e)=>setPredFinal([e.target.value, predFinal[1]])}>
+<select disabled={true} onChange={(e)=>setPredFinal([e.target.value, predFinal[1]])}>
   <option>Finaalisti 1</option>
   {Object.values(groups).flat().map(t=>(
     <option key={t}>{t}</option>
   ))}
 </select>
 
-<select onChange={(e)=>setPredFinal([predFinal[0], e.target.value])}>
+<select disabled={true} onChange={(e)=>setPredFinal([predFinal[0], e.target.value])}>
   <option>Finaalisti 2</option>
   {Object.values(groups).flat().map(t=>(
     <option key={t}>{t}</option>
   ))}
 </select>
 
-<select onChange={(e)=>setPredWinner(e.target.value)}>
+<select disabled={true} onChange={(e)=>setPredWinner(e.target.value)}>
   <option>Voittaja</option>
   {Object.values(groups).flat().map(t=>(
     <option key={t}>{t}</option>
@@ -293,7 +295,7 @@ const isLocked = new Date() > DEADLINE;
     {[1,2].map(pos => (
      <select
   key={pos}
-  disabled={isLocked}
+  disabled={true}
   onChange={(e)=>updatePick(g,pos,e.target.value)}
 >
         <option>Valitse</option>
