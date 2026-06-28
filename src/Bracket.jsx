@@ -233,7 +233,7 @@ alert("✅ Tallennettu!");
   winner: ""
 };
 
-const DEADLINE = new Date("2026-06-28T19:00:00");
+const DEADLINE = new Date("2026-06-28T22:00:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
