@@ -336,43 +336,37 @@ const isLocked = new Date() > DEADLINE;
   </div>
 
   {/* R16 */}
+{/* 🔒 HIDDEN DURING R32 STAGE
 <div>
   {r16.map((team,i)=>(
-    <div
-      key={i}
-      onClick={()=>!isLocked && pick(team,"R16",i)}
-      style={box(team, qf.includes(team))}
-    >
+    <div key={i}>
       {team || "-"}
     </div>
   ))}
 </div>
+*/}
 
 {/* QF */}
+{/* 🔒 HIDDEN DURING R32 STAGE
 <div>
   {qf.map((team,i)=>(
-    <div
-      key={i}
-      onClick={()=>!isLocked && pick(team,"QF",i)}
-      style={box(team, sf.includes(team))}
-    >
+    <div key={i}>
       {team || "-"}
     </div>
   ))}
 </div>
+*/}
 
 {/* SF */}
+{/* 🔒 HIDDEN DURING R32 STAGE
 <div>
   {sf.map((team,i)=>(
-    <div
-      key={i}
-      onClick={()=>!isLocked && pick(team,"SF",i)}
-      style={box(team, final.includes(team))}
-    >
+    <div key={i}>
       {team || "-"}
     </div>
   ))}
 </div>
+*/}
 
   {/* FINAL */}
   <div style={{textAlign:"center"}}>
