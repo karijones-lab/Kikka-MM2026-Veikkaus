@@ -436,7 +436,7 @@ Object.keys(data.picks || {}).forEach(g=>{
     if(correct.winner && data.winner === correct.winner) score += 10;
     // ennakkovoittaja
     if(correct.winner && data.predWinner === correct.winner) score += 15;
-   return { player, score, predWinner: data.predWinner };
+   return { player, score, predWinner: data.predWinner, data };
   })
   .sort((a,b)=>b.score-a.score)
   .map((item, i, arr) => ({
@@ -444,7 +444,7 @@ Object.keys(data.picks || {}).forEach(g=>{
   diff: i === 0 ? 0 : arr[0].score - item.score
 }))
 
-.map(({player, score, predWinner, diff}, i) => (
+.map(({player, score, predWinner, diff, data}, i) => (
     <div
       key={player}
       style={{
