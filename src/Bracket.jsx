@@ -210,6 +210,11 @@ alert("✅ Tallennettu!");
   ["Colombia", "Ghana"],
 ];
 
+const manualR16 = [
+  "Canada", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", ""
+];
+
   const correct = {
   
   groups: {
@@ -226,7 +231,7 @@ alert("✅ Tallennettu!");
     K: ["Colombia","Portugal"],
     L: ["England","Croatia"]
   },
-  r16: [],
+  r16: manualR16,
   qf: [],
   sf: [],
   final: [],
@@ -500,3 +505,4 @@ Object.keys(data.picks || {}).forEach(g=>{
   </div>
 );
 }
+
