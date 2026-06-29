@@ -423,7 +423,7 @@ Object.keys(data.picks || {}).forEach(g=>{
 });
 
     data.r16?.forEach(t=>{
-      if(correct.r16.includes(t)) score += 1;
+      if(correct.r16.includes(t)) score += 2;
     });
 
     data.qf?.forEach(t=>{
@@ -505,4 +505,3 @@ Object.keys(data.picks || {}).forEach(g=>{
   </div>
 );
 }
-
