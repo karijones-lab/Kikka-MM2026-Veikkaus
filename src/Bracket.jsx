@@ -212,7 +212,7 @@ alert("✅ Tallennettu!");
 
 const manualR16 = [
   "Canada", "Paraguay", "Brazil", "France", "Morocco", "Norway", "Belgium", "Mexico",
-  "England", "", "USA", "", "", "", "", ""
+  "England", "Spain", "USA", "", "", "", "", ""
 ];
 
   const correct = {
