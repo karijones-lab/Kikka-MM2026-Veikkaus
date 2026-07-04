@@ -84,7 +84,7 @@ useEffect(()=>{
   if(round==="R16"){
     setQF(prev=>{
       const c=[...prev];
-      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ MUUTTUU
+      c[Math.floor(index/2)] = team;
       return c;
     });
   }
@@ -210,9 +210,21 @@ alert("✅ Tallennettu!");
   ["Colombia", "Ghana"],
 ];
 
+
+const R16_MATCHES = [
+  ["Canada", "Mororcco"],
+  ["Paraguay", "France"],
+  ["Brazil", "Norway"],
+  ["Mexico", "England"],
+  ["Portugal", "Spain"],
+  ["USA", "Belgium"],
+  ["Argentina", "Egypt"],
+  ["Switzerland", "Colombia"],
+];
+
 const manualR16 = [
   "Canada", "Paraguay", "Brazil", "France", "Morocco", "Norway", "Belgium", "Mexico",
-  "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", "Colombia"
+  "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", ""
 ];
 
   const correct = {
@@ -231,8 +243,8 @@ const manualR16 = [
     K: ["Colombia","Portugal"],
     L: ["England","Croatia"]
   },
-  r16: manualR16,
-  qf: [],
+ r16: manualR16,
+ qf: manualQF,
   sf: [],
   final: [],
   winner: ""
@@ -400,6 +412,32 @@ const isLocked = new Date() > DEADLINE;
 
 </div>
 
+<h3>R16</h3>
+
+<div style={{display:"flex",justifyContent:"space-between"}}>
+
+  {R16_MATCHES.map((m,i)=>(
+    <div key={i}>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[0],"R16",i)}
+        style={box(m?.[0], qf.includes(m?.[0]))}
+      >
+        {m?.[0] || "-"}
+      </div>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[1],"R16",i)}
+        style={box(m?.[1], qf.includes(m?.[1]))}
+      >
+        {m?.[1] || "-"}
+      </div>
+
+    </div>
+  ))}
+
+</div>
+
   </>
 )}
 
@@ -427,11 +465,11 @@ Object.keys(data.picks || {}).forEach(g=>{
     });
 
     data.qf?.forEach(t=>{
-      if(correct.qf.includes(t)) score += 2;
+      if(correct.qf.includes(t)) score += 3;
     });
 
     data.sf?.forEach(t=>{
-      if(correct.sf.includes(t)) score += 3;
+      if(correct.sf.includes(t)) score += 4;
     });
 
     data.final?.forEach(t=>{
