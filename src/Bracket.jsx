@@ -255,7 +255,7 @@ const manualQF = [
   winner: ""
 };
 
-const DEADLINE = new Date("2026-06-28T22:00:00");
+const DEADLINE = new Date("2026-07-04T20:00:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
