@@ -224,7 +224,7 @@ const R16_MATCHES = [
 
 const manualR16 = [
   "Canada", "Paraguay", "Brazil", "France", "Morocco", "Norway", "Belgium", "Mexico",
-  "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", ""
+  "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", "Colombia"
 ];
 
 const manualQF = [
