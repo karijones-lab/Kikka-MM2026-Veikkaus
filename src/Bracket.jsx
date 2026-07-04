@@ -227,6 +227,11 @@ const manualR16 = [
   "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", ""
 ];
 
+const manualQF = [
+  "", "", "", "",
+  "", "", "", ""
+];
+
   const correct = {
   
   groups: {
