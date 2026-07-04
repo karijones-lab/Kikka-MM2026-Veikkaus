@@ -84,7 +84,7 @@ useEffect(()=>{
   if(round==="R16"){
     setQF(prev=>{
       const c=[...prev];
-      c[Math.floor(index/2)] = team;
+      c[index] = team;
       return c;
     });
   }
