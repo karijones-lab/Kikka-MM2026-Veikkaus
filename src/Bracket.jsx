@@ -249,7 +249,7 @@ const manualQF = [
     L: ["England","Croatia"]
   },
  r16: manualR16,
- qf: [],
+ qf: manualQF,
   sf: [],
   final: [],
   winner: ""
