@@ -212,7 +212,7 @@ alert("✅ Tallennettu!");
 
 
 const R16_MATCHES = [
-  ["Canada", "Mororcco"],
+  ["Canada", "Morocco"],
   ["Paraguay", "France"],
   ["Brazil", "Norway"],
   ["Mexico", "England"],
@@ -228,7 +228,7 @@ const manualR16 = [
 ];
 
 const manualQF = [
-  "Mororcco", "", "", "",
+  "Morocco", "", "", "",
   "", "", "", ""
 ];
 
