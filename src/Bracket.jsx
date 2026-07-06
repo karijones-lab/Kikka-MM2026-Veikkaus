@@ -228,7 +228,7 @@ const manualR16 = [
 ];
 
 const manualQF = [
-  "Morocco", "France", "", "",
+  "Morocco", "France", "Norway", "England",
   "", "", "", ""
 ];
 
