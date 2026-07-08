@@ -264,7 +264,7 @@ const manualSF = [
   },
  r16: manualR16,
  qf: manualQF,
-  sf: manualSF,
+  sf: [],
   final: [],
   winner: ""
 };
