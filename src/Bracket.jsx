@@ -39,6 +39,10 @@ useEffect(()=>{
   console.log("🔥 DB TEST:", db);
 },[]);
 
+useEffect(()=>{
+  console.log("🔥 ALL DATA:", allData);
+}, [allData]);
+
   // 🔹 LOAD PLAYER
   useEffect(()=>{
     if(current && allData[current]){
@@ -90,12 +94,12 @@ useEffect(()=>{
   }
 
   if(round==="QF"){
-    setSF(prev=>{
-      const c=[...prev];
-      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ
-      return c;
-    });
-  }
+  setSF(prev=>{
+    const c=[...prev];
+    c[index] = team;   // 🔴 EI Math.floor
+    return c;
+  });
+}
 
   if(round==="SF"){
     setFinal(prev=>{
@@ -210,7 +214,6 @@ alert("✅ Tallennettu!");
   ["Colombia", "Ghana"],
 ];
 
-
 const R16_MATCHES = [
   ["Canada", "Morocco"],
   ["Paraguay", "France"],
@@ -222,6 +225,13 @@ const R16_MATCHES = [
   ["Switzerland", "Colombia"],
 ];
 
+const QF_MATCHES = [
+  ["France", "Morocco"],
+  ["Spain", "Belgium"],
+  ["Norway", "England"],
+  ["Argentina", "Switzerland"],
+];
+
 const manualR16 = [
   "Canada", "Paraguay", "Brazil", "France", "Morocco", "Norway", "Belgium", "Mexico",
   "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", "Colombia"
@@ -230,6 +240,10 @@ const manualR16 = [
 const manualQF = [
   "Morocco", "France", "Norway", "England",
   "Spain", "Belgium", "Argentina", "Switzerland"
+];
+
+const manualSF = [
+  "", "", "", ""
 ];
 
   const correct = {
@@ -250,12 +264,12 @@ const manualQF = [
   },
  r16: manualR16,
  qf: manualQF,
-  sf: [],
+  sf: manualSF,
   final: [],
   winner: ""
 };
 
-const DEADLINE = new Date("2026-07-04T20:00:00");
+const DEADLINE = new Date("2026-07-09T21:00:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
@@ -419,6 +433,32 @@ const isLocked = new Date() > DEADLINE;
 
 <h3>R16</h3>
 
+<h3>QF</h3>
+
+<div style={{display:"flex",justifyContent:"space-between"}}>
+
+  {QF_MATCHES.map((m,i)=>(
+    <div key={i}>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[0],"QF",i)}
+        style={box(m?.[0], sf.includes(m?.[0]))}
+      >
+        {m?.[0] || "-"}
+      </div>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[1],"QF",i)}
+        style={box(m?.[1], sf.includes(m?.[1]))}
+      >
+        {m?.[1] || "-"}
+      </div>
+
+    </div>
+  ))}
+
+</div>
+
 <div style={{display:"flex",justifyContent:"space-between"}}>
 
   {R16_MATCHES.map((m,i)=>(
@@ -548,3 +588,4 @@ Object.keys(data.picks || {}).forEach(g=>{
   </div>
 );
 }
+
