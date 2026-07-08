@@ -229,7 +229,7 @@ const manualR16 = [
 
 const manualQF = [
   "Morocco", "France", "Norway", "England",
-  "Spain", "Belgium", "", ""
+  "Spain", "Belgium", "Argentina", "Switzerland"
 ];
 
   const correct = {
