@@ -243,7 +243,7 @@ const manualQF = [
 ];
 
 const manualSF = [
-  "", "", "", ""
+  "France", "Spain", "", ""
 ];
 
   const correct = {
