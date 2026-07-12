@@ -102,12 +102,12 @@ useEffect(()=>{
 }
 
   if(round==="SF"){
-    setFinal(prev=>{
-      const c=[...prev];
-      c[Math.floor(index/2)] = team;   // 🔥 TÄMÄ
-      return c;
-    });
-  }
+  setFinal(prev=>{
+    const c=[...prev];
+    c[index] = team;   // ✅ oikein
+    return c;
+  });
+}
 
   if(round==="FINAL"){
     setWinner(team);
@@ -232,6 +232,11 @@ const QF_MATCHES = [
   ["Argentina", "Switzerland"],
 ];
 
+const SF_MATCHES = [
+  ["France","Spain"],
+  ["England","Argentina"]
+];
+
 const manualR16 = [
   "Canada", "Paraguay", "Brazil", "France", "Morocco", "Norway", "Belgium", "Mexico",
   "England", "Spain", "USA", "Argentina", "Portugal", "Egypt", "Switzerland", "Colombia"
@@ -244,6 +249,10 @@ const manualQF = [
 
 const manualSF = [
   "France", "Spain", "England", "Argentina"
+];
+
+const manualFinal = [
+  "", ""
 ];
 
   const correct = {
@@ -433,6 +442,30 @@ const isLocked = new Date() > DEADLINE;
 
 <h3>R16</h3>
 
+<div style={{display:"flex",justifyContent:"space-between"}}>
+
+  {R16_MATCHES.map((m,i)=>(
+    <div key={i}>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[0],"R16",i)}
+        style={box(m?.[0], qf.includes(m?.[0]))}
+      >
+        {m?.[0] || "-"}
+      </div>
+
+      <div
+        onClick={()=>!isLocked && pick(m?.[1],"R16",i)}
+        style={box(m?.[1], qf.includes(m?.[1]))}
+      >
+        {m?.[1] || "-"}
+      </div>
+
+    </div>
+  ))}
+
+</div>
+
 <h3>QF</h3>
 
 <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -459,27 +492,51 @@ const isLocked = new Date() > DEADLINE;
 
 </div>
 
+<h3>SF</h3>
+
 <div style={{display:"flex",justifyContent:"space-between"}}>
 
-  {R16_MATCHES.map((m,i)=>(
+  {SF_MATCHES.map((m,i)=>(
     <div key={i}>
 
       <div
-        onClick={()=>!isLocked && pick(m?.[0],"R16",i)}
-        style={box(m?.[0], qf.includes(m?.[0]))}
+        onClick={()=>!isLocked && pick(m?.[0],"SF",i)}
+        style={box(m?.[0], final.includes(m?.[0]))}
       >
-        {m?.[0] || "-"}
+        {m?.[0]}
       </div>
 
       <div
-        onClick={()=>!isLocked && pick(m?.[1],"R16",i)}
-        style={box(m?.[1], qf.includes(m?.[1]))}
+        onClick={()=>!isLocked && pick(m?.[1],"SF",i)}
+        style={box(m?.[1], final.includes(m?.[1]))}
       >
-        {m?.[1] || "-"}
+        {m?.[1]}
       </div>
 
     </div>
   ))}
+
+</div>
+
+<h3>FINAL</h3>
+
+<div style={{textAlign:"center"}}>
+
+  <div
+    onClick={()=>!isLocked && pick(final?.[0],"FINAL",0)}
+    style={box(final?.[0], winner===final?.[0])}
+  >
+    {final?.[0] || "-"}
+  </div>
+
+  <div
+    onClick={()=>!isLocked && pick(final?.[1],"FINAL",1)}
+    style={box(final?.[1], winner===final?.[1])}
+  >
+    {final?.[1] || "-"}
+  </div>
+
+  <h2>🏆 {winner || "-"}</h2>
 
 </div>
 
@@ -506,24 +563,37 @@ Object.keys(data.picks || {}).forEach(g=>{
 });
 
     data.r16?.forEach(t=>{
-      if(correct.r16.includes(t)) score += 2;
-    });
+  if(correct.r16.includes(t)) score += 2;
+});
 
-    data.qf?.forEach(t=>{
-      if(correct.qf.includes(t)) score += 3;
-    });
+data.qf?.forEach(t=>{
+  if(correct.qf.includes(t)) score += 3;
+});
 
-    data.sf?.forEach(t=>{
-      if(correct.sf.includes(t)) score += 4;
-    });
+data.sf?.forEach(t=>{
+  if(correct.sf.includes(t)) score += 4;
+});
 
-    data.final?.forEach(t=>{
-      if(correct.final.includes(t)) score += 5;
-    });
+data.final?.forEach(t=>{
+  if(correct.final.includes(t)) score += 5;
+});
 
-    if(correct.winner && data.winner === correct.winner) score += 10;
-    // ennakkovoittaja
-    if(correct.winner && data.predWinner === correct.winner) score += 15;
+// ENNAKKO FINAALIJOUKKUEET
+data.predFinal?.forEach(t=>{
+  if(correct.final.length > 0 && correct.final.includes(t)){
+    score += 10;
+  }
+});
+
+// ENNAKKOVOITTAJA
+if(correct.winner && data.predWinner === correct.winner){
+  score += 12;
+}
+
+// FINAALIN VOITTAJA (live)
+if(correct.winner && data.winner === correct.winner){
+  score += 6;
+}
    return { player, score, predWinner: data.predWinner, data };
   })
   .sort((a,b)=>b.score-a.score)
@@ -588,4 +658,3 @@ Object.keys(data.picks || {}).forEach(g=>{
   </div>
 );
 }
-
