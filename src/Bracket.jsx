@@ -252,7 +252,7 @@ const manualSF = [
 ];
 
 const manualFinal = [
-  "", ""
+  "Spain", ""
 ];
 
   const correct = {
@@ -274,7 +274,7 @@ const manualFinal = [
  r16: manualR16,
  qf: manualQF,
   sf: manualSF,
-  final: [],
+  final: manualFinal,
   winner: ""
 };
 
