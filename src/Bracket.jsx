@@ -252,7 +252,7 @@ const manualSF = [
 ];
 
 const manualFinal = [
-  "Spain", ""
+  "Spain", "Argentina"
 ];
 
   const correct = {
