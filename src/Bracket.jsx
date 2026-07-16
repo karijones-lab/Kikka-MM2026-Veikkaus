@@ -278,7 +278,7 @@ const manualFinal = [
   winner: ""
 };
 
-const DEADLINE = new Date("2026-07-14T21:30:00");
+const DEADLINE = new Date("2026-07-16T12:30:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
