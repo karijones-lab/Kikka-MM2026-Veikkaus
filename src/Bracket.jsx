@@ -278,7 +278,7 @@ const manualFinal = [
   winner: ""
 };
 
-const DEADLINE = new Date("2026-07-19T20:00:00");
+const DEADLINE = new Date("2026-07-14T20:00:00");
 const isLocked = new Date() > DEADLINE;
 
     return (
@@ -415,12 +415,13 @@ const isLocked = new Date() > DEADLINE;
 
   {/* FINAL */}
   <div style={{textAlign:"center"}}>
-    <div onClick={()=>!isLocked && pick(final?.[0],"FINAL",0)} style={box(final?.[0], winner===final?.[0])}>
-      {final?.[0] || "-"}
-    </div>
-    <div onClick={()=>!isLocked && pick(final?.[1],"FINAL",1)} style={box(final?.[1], winner===final?.[1])}>
-      {final?.[1] || "-"}
-    </div>
+   <div onClick={()=>!isLocked && pick(correct.final?.[0],"FINAL",0)} style={box(correct.final?.[0], winner===correct.final?.[0])}>
+  {correct.final?.[0] || "-"}
+</div>
+
+<div onClick={()=>!isLocked && pick(correct.final?.[1],"FINAL",1)} style={box(correct.final?.[1], winner===correct.final?.[1])}>
+  {correct.final?.[1] || "-"}
+</div>
     <h2>🏆 {winner || "-"}</h2>
   </div>
 
@@ -523,17 +524,17 @@ const isLocked = new Date() > DEADLINE;
 <div style={{textAlign:"center"}}>
 
   <div
-    onClick={()=>!isLocked && pick(final?.[0],"FINAL",0)}
-    style={box(final?.[0], winner===final?.[0])}
+    onClick={()=>!isLocked && pick(correct.final?.[0],"FINAL",0)}
+    style={box(correct.final?.[0], winner===correct.final?.[0])}
   >
-    {final?.[0] || "-"}
+    {correct.final?.[0] || "-"}
   </div>
 
   <div
-    onClick={()=>!isLocked && pick(final?.[1],"FINAL",1)}
-    style={box(final?.[1], winner===final?.[1])}
+    onClick={()=>!isLocked && pick(correct.final?.[1],"FINAL",1)}
+    style={box(correct.final?.[1], winner===correct.final?.[1])}
   >
-    {final?.[1] || "-"}
+    {correct.final?.[1] || "-"}
   </div>
 
   <h2>🏆 {winner || "-"}</h2>
