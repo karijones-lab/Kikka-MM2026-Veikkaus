@@ -275,7 +275,7 @@ const manualFinal = [
  qf: manualQF,
   sf: manualSF,
   final: manualFinal,
-  winner: ""
+  winner: "Spain"
 };
 
 const DEADLINE = new Date("2026-07-19T21:00:00");
